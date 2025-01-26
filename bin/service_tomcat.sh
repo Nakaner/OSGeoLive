@@ -54,7 +54,7 @@ chown tomcat:tomcat /etc/tomcat9/tomcat-users.xml
 
 # something screwed up with the ISO permissions:
 chgrp tomcat /usr/share/tomcat9/bin/*.sh
-adduser "$USER_NAME" tomcat
+adduser "$USER_NAME" tomcat || usermod -aG tomcat "$USER_NAME"
 
 # systemctl or service are not available anymore in chroot
 # service tomcat9 stop

@@ -263,7 +263,7 @@ EOF
 # allow the user to write to it, via group permissions
 chgrp users "$MAPPROXY_DIR/mapproxy.yaml"
 chmod g+w "$MAPPROXY_DIR/mapproxy.yaml"
-adduser "$USER_NAME" users
+adduser "$USER_NAME" users || usermod -aG users "$USER_NAME"
 
 
 ####

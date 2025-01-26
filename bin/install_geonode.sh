@@ -233,7 +233,7 @@ echo "Done"
 # GeoServer startup above will create files and directories
 # owned by root in the GeoServer directory. Ordinary users must
 # have write access to these to be able to start GeoServer.
-adduser "$USER_NAME" users
+adduser "$USER_NAME" users || usermod -aG users "$USER_NAME"
 chmod -R g+w "$GEOSERVER_PATH/data_dir"
 chmod -R g+w "$GEOSERVER_PATH/logs"
 chgrp -R users "$GEOSERVER_PATH/data_dir"

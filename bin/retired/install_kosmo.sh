@@ -92,7 +92,7 @@ if [ $? -ne 0 ] ; then
    exit 1
 fi
 
-adduser "$USER_NAME" users
+adduser "$USER_NAME" users || usermod -aG users "$USER_NAME"
 chgrp -R users "$KOSMO_FOLDER"
 chmod -R g+w "$KOSMO_FOLDER"
 

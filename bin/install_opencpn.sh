@@ -75,7 +75,7 @@ mkdir -p "$DATADIR/c.dist/ENC_ROOT"
 mkdir "$DATADIR/gpx"   # GPX tracks, etc
 mkdir "$DATADIR/grib"  # GRIB weather data downloads:
 
-adduser "$USER_NAME" users
+adduser "$USER_NAME" users || usermod -aG users "$USER_NAME"
 chown -R root.users "$DATADIR"
 chmod -R g+rw "$DATADIR"
 

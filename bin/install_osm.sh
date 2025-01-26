@@ -45,11 +45,13 @@ mkdir /usr/local/share/osm
 apt-get install --assume-yes osmium-tool python3-osmapi nik4
 apt-get install --assume-yes gpsd gpsd-clients
 mkdir /etc/apt/sources.list.d
+echo "Adding JOSM APT repository"
 echo "deb [signed-by=/usr/local/share/keyrings/josm-apt.gpg] https://josm.openstreetmap.de/apt jammy universe" > /etc/apt.sources.list.d/josm.list
 mkdir -p /usr/local/share/keyrings
 wget -q https://josm.openstreetmap.de/josm-apt.key -O- | sudo gpg --dearmor -o /usr/local/share/keyrings/josm-apt.gpg
 apt-get install apt-transport-https
 apt-get update
+echo "Installing JOSM"
 apt-get install --assume-yes josm
 
 ## JOSM -- OpenStreetMap feature editor

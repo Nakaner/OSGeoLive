@@ -140,7 +140,7 @@ chmod g+w "$GEONETWORK_FOLDER"/jetty
 chmod g+w "$GEONETWORK_FOLDER"/jetty/logs -R
 chmod g+w "$GEONETWORK_FOLDER"/web/geonetwork/WEB-INF/ -R
 # chmod g+w "$GEONETWORK_FOLDER"/web/geonetwork/images/logos
-adduser "$USER_NAME" users
+adduser "$USER_NAME" users || usermod -aG users "$USERNAME"
 
 
 # create startup, shutdown, open browser and doco desktop entries

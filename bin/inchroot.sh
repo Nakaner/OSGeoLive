@@ -85,7 +85,7 @@ ln -s /bin/true /sbin/initctl
 
 # Execute the osgeolive build
 # Adding "user" to help the build process
-adduser user --disabled-password --gecos user
+adduser user --disabled-password --gecos user ||  useradd -m -U user
 
 # Change ID under 999 so that iso boot does not fail
 # usermod -u 500 user
@@ -107,9 +107,9 @@ chmod a+x bootstrap.sh
 
 cd /usr/local/share/gisvm/bin
 
-# Copy external version information to be able to rename the builds
-cp /tmp/VERSION.txt /usr/local/share/gisvm/
-cp /tmp/CHANGES.txt /usr/local/share/gisvm/
+## Copy external version information to be able to rename the builds
+#cp /tmp/VERSION.txt /usr/local/share/gisvm/
+#cp /tmp/CHANGES.txt /usr/local/share/gisvm/
 
 #######################################################
 # Replacement for main.sh
@@ -126,86 +126,86 @@ export USER_NAME
 # ./base_language.sh
 
 ### Service installers
-./service_apache2.sh
-./base_php.sh
-./service_tomcat.sh
-./service_postgresql.sh
+#./service_apache2.sh
+#./base_php.sh
+#./service_tomcat.sh
+#./service_postgresql.sh
 # ./service_mysql.sh
 
 ### Project installers
 ## C stack
-./install_postgis.sh
-./install_spatialite.sh
+#./install_postgis.sh
+#./install_spatialite.sh
 ./install_osm.sh
-./load_postgis.sh
-./install_pgrouting.sh
-./install_ossim.sh
-./install_mapserver.sh
-./install_mapcache.sh
-./install_tinyows.sh
-# ./install_gmt.sh # install_vm_only
-./install_mapnik.sh
-./install_otb.sh
-./install_saga.sh
-./install_grass.sh
-./install_qgis.sh
-./install_qgis_server.sh
-# ./install_qfield.sh # install_vm_only
-./install_zoo-project.sh "$ARCH"
-./install_marble.sh
-./install_opencpn.sh
-./install_xygrib.sh
-./install_PDAL.sh
+#./load_postgis.sh
+#./install_pgrouting.sh
+#./install_ossim.sh
+#./install_mapserver.sh
+#./install_mapcache.sh
+#./install_tinyows.sh
+## ./install_gmt.sh # install_vm_only
+#./install_mapnik.sh
+#./install_otb.sh
+#./install_saga.sh
+#./install_grass.sh
+#./install_qgis.sh
+#./install_qgis_server.sh
+## ./install_qfield.sh # install_vm_only
+#./install_zoo-project.sh "$ARCH"
+#./install_marble.sh
+#./install_opencpn.sh
+#./install_xygrib.sh
+#./install_PDAL.sh
+#
+### Python stack
+#./install_mapproxy.sh
+#./install_pycsw.sh
+#./install_pywps.sh
+#./install_pygeoapi.sh
+#./install_eoxserver.sh
+#./install_istsos.sh
+## ./install_actinia.sh # install_vm_only
+#./install_datacube.sh
 
-## Python stack
-./install_mapproxy.sh
-./install_pycsw.sh
-./install_pywps.sh
-./install_pygeoapi.sh
-./install_eoxserver.sh
-./install_istsos.sh
-# ./install_actinia.sh # install_vm_only
-./install_datacube.sh
+### R stack
+#./install_R.sh
+#
+### Jupyter
+#./install_jupyter.sh
 
-## R stack
-./install_R.sh
-
-## Jupyter
-./install_jupyter.sh
-
-## Java stack
-./install_geoserver.sh
-./install_geonetwork.sh
-./install_deegree.sh
-# ./install_udig.sh "$ARCH" # install_vm_only
-./install_openjump.sh
-# ./install_gvsig.sh "$ARCH" # install_vm_only
-./install_gpsprune.sh
-
-## Java + default tomcat
-./install_52nWPS.sh
-# ./install_52nSOS.sh # install_vm_only
-# ./install_ncWMS.sh # install_vm_only
-
-## PHP stack
-./install_mapbender.sh
-./install_geomoose.sh
-
-## more Python (GeoServer rdeps)
-./install_geonode.sh
-
-## Rust
-./install_trex.sh
-
-## Javascript et al
-./install_openlayers.sh
-./install_leaflet.sh
-./install_cesium.sh
-./install_geoext.sh
-# ./install_rasdaman.sh # install_vm_only
-./install_geostyler.sh
-# ./install_re3gistry.sh # install_vm_only
-# ./install_etf.sh # install_vm_only
+### Java stack
+#./install_geoserver.sh
+#./install_geonetwork.sh
+#./install_deegree.sh
+## ./install_udig.sh "$ARCH" # install_vm_only
+#./install_openjump.sh
+## ./install_gvsig.sh "$ARCH" # install_vm_only
+#./install_gpsprune.sh
+#
+### Java + default tomcat
+#./install_52nWPS.sh
+## ./install_52nSOS.sh # install_vm_only
+## ./install_ncWMS.sh # install_vm_only
+#
+### PHP stack
+#./install_mapbender.sh
+#./install_geomoose.sh
+#
+### more Python (GeoServer rdeps)
+#./install_geonode.sh
+#
+### Rust
+#./install_trex.sh
+#
+### Javascript et al
+#./install_openlayers.sh
+#./install_leaflet.sh
+#./install_cesium.sh
+#./install_geoext.sh
+## ./install_rasdaman.sh # install_vm_only
+#./install_geostyler.sh
+## ./install_re3gistry.sh # install_vm_only
+## ./install_etf.sh # install_vm_only
 
 ## Docs, Data and extras
 ./load_gisdata.sh
@@ -251,7 +251,7 @@ chown -hR root:root /etc/skel
 # By keeping this user, /home/user exists and installation fails if someone uses the same username.
 # killall -u user
 # userdel -r user
-deluser --remove-home user
+deluser --remove-home user || userdel -r user
 
 # Copy casper.conf with default username and hostname
 # FIXME: User is still "xubuntu" in live session... perhaps because user is already created?

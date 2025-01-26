@@ -73,7 +73,7 @@ sudo -u $POSTGRES_USER psql eoxserver_demo -c 'create extension postgis;'
 cd "$DATA_DIR"
 chmod -R g+w "$DATA_DIR"
 chgrp -R users "$DATA_DIR"
-adduser user users
+adduser user users || usermod -aG users "$USER_NAME"
 
 if [ ! -d eoxserver_demonstration ] ; then
     echo "Creating EOxServer demonstration instance"

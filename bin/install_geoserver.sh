@@ -141,7 +141,7 @@ chmod 755 "$GS_HOME/bin/stop_notify.sh"
 #EOF
 
 ## Allow the user to write in the GeoServer data dir
-adduser "$USER_NAME" users
+adduser "$USER_NAME" users  || usermod -aG users "$USER_NAME"
 chgrp -R users "$GS_HOME/data_dir"
 chgrp -R users "$GS_HOME/logs"
 chmod -R g+w "$GS_HOME/data_dir"

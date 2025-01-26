@@ -30,7 +30,7 @@ if [ -z "$USER_NAME" ] ; then
 fi
 
 # add "user" to the www-data group
-adduser "$USER_NAME" www-data
+adduser "$USER_NAME" www-data || usermod -aG www-data "$USER_NAME"
 
 
 mkdir -p /var/www/html

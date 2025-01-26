@@ -4,6 +4,9 @@ OSGeo Live GIS Disc
 Unreleased
 ====================
 
+* firefox-esr instaed of firefox
+* add kmod
+* Lubuntu 22.04.5
 * Install JOSM from developers' own APT repository to get an up-to-date version being able to upload changes to the OSM API.
 
 Version 16.0

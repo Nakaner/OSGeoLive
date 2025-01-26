@@ -113,7 +113,7 @@ apt-get install --yes wget less zip unzip bzip2 p7zip \
   git openssh-client lftp usbutils wireless-tools \
   locate patch menu vim nano screen iotop xfonts-jmk \
   ghostscript htop units gdebi xkb-data \
-  xfonts-100dpi xfonts-75dpi zenity curl firefox
+  xfonts-100dpi xfonts-75dpi zenity curl firefox-esr kmod passwd
 
 # removed from list:
 # cvs cvsutils fuseiso dlocate medit nedit a2ps netpbm qiv lynx mutt mc
@@ -179,7 +179,7 @@ chown -h "$USER_NAME":"$USER_NAME" data
 ln -s /usr/local/share/data /etc/skel/data
 
 # and there was music and laughter and much rejoicing
-adduser user audio
+adduser user audio || usermode -aG audio user
 
 ## https://bugs.launchpad.net/ubuntu/+source/fuse/+bug/1581163
 # and connectivity too

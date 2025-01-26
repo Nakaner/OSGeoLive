@@ -34,6 +34,8 @@
 #
 #############################################################################
 
+set -euo pipefail
+
 if [ "$#" -lt 2 ] || [ "$#" -gt 4 ]; then
     echo "Wrong number of arguments"
     echo "Usage: build_chroot.sh ARCH(i386 or amd64) MODE(release or nightly) [git_branch (default=master)] [github_username (default=OSGeo) or git clone url]"
@@ -81,7 +83,7 @@ echo "Git branch: $GIT_BRANCH"
 
 DIR="/usr/local/share/gisvm/bin"
 GIT_DIR="/usr/local/share/gisvm"
-BUILD_HOME="/home/user"
+BUILD_HOME="/home/$USER"
 VERSION=`cat "$DIR"/../VERSION.txt`
 PACKAGE_NAME="osgeolive"
 cd "$GIT_DIR"
@@ -118,7 +120,7 @@ echo
 echo "Installing build tools"
 echo "======================"
 
-sudo apt-get install --yes squashfs-tools genisoimage syslinux-utils lzip binwalk lz4 xorriso
+#sudo apt-get install --yes squashfs-tools genisoimage syslinux-utils lzip binwalk lz4 xorriso
 
 #TODO add wget to grab a fresh image, optional
 
@@ -136,12 +138,16 @@ UBU_RELEASE="22.04"
 ISO_RELEASE="22.04.5"
 # ISO_RELEASE="22.04-beta"
 UBU_ISO="lubuntu-${ISO_RELEASE}-desktop-$ARCH.iso"
+echo "Starting download"
 wget -c --progress=dot:mega \
    "$UBU_MIRROR/lubuntu/releases/$UBU_RELEASE/release/$UBU_ISO"
    # "$UBU_MIRROR/lubuntu/releases/$UBU_RELEASE/beta/$UBU_ISO"
 #Start with a fresh copy
 #Mount the Desktop .iso
 mkdir mnt
+echo
+echo "Mounting Lubuntu original image..."
+echo "====================================="
 sudo mount -o loop "$UBU_ISO" mnt
 echo "Lubuntu $ISO_RELEASE $ARCH image mounted."
 
